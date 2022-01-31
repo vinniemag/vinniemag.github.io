@@ -30,7 +30,7 @@
         width: 400px;
       }
       .inputimg {
-        width: 200px;
+        max-width: 100%;
       }
     </style>
     <h2>"Pass The Pigs" Swineherd (Scorekeeper) Web App</h2>
@@ -195,7 +195,7 @@
       </div>
     </div>
 
-    <table id="imgDiv">
+    <table id="imgDiv" style="width: 100%;">
     <tr>
      <td>
       <div id="ipassDiv" hidden>
@@ -377,7 +377,7 @@
           let cs = Number(sessionStorage.currentScore);
           document.getElementById(pNameId).style.backgroundColor = "green";
           document.getElementById(pNameId).style.color = "white";
-          document.querySelector('#action').innerHTML = pName + " has the pigs. Turn score is " + cs + ". Toss the pigs and select how they landed..."
+          document.querySelector('#action').innerHTML = pName + " has the pigs.<br>Turn score is " + cs + ".<br>Toss the pigs and select how they landed..."
           document.getElementById("pigoutDiv").removeAttribute("hidden");
           document.getElementById("siderDiv").removeAttribute("hidden");
           document.getElementById("razorbackDiv").removeAttribute("hidden");
