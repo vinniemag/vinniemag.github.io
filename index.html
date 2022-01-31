@@ -25,8 +25,15 @@
         font-size: 200%;
         width: 500px;
       }
+      .inputtext {
+        font-size: 200%;
+        width: 400px;
+      }
+      .inputimg {
+        width: 200px;
+      }
     </style>
-    <h2>"Pass The Pigs" Swineherd (Scorekeeper) Web App - Text Buttons</h2>
+    <h2>"Pass The Pigs" Swineherd (Scorekeeper) Web App</h2>
     <label for="playerCount"> Select number of players/teams: </label>
     <select id="playerCount" name="playerCount">
     <option value="2">2</option>
@@ -47,61 +54,61 @@
         onclick="playerSet()" />
     <div id="p1Div" hidden>
     <label id="p1InputLabel" for="player1Input"> Player/team 1: </label>
-    <input type="text" id="player1Input" name="player1Input"/>
+    <input class="inputtext" type="text" id="player1Input" name="player1Input"/>
     <label id="p1ScoreLabel" for="player1Score"> score: </label>
     <span id="player1Score">0</span>
     </div>
     <div id="p2Div" hidden>
     <label id="p2InputLabel" for="player2Input"> Player/team 2: </label>
-    <input type="text" id="player2Input" name="player2Input"/>
+    <input class="inputtext" type="text" id="player2Input" name="player2Input"/>
     <label id="p2ScoreLabel" for="player2Score"> score: </label>
     <span id="player2Score">0</span>
     </div>
     <div id="p3Div" hidden>
     <label id="p3InputLabel" for="player3Input"> Player/team 3: </label>
-    <input type="text" id="player3Input" name="player3Input"/>
+    <input class="inputtext" type="text" id="player3Input" name="player3Input"/>
     <label id="p3ScoreLabel" for="player3Score"> score: </label>
     <span id="player3Score">0</span>
     </div>
     <div id="p4Div" hidden>
     <label id="p4InputLabel" for="player4Input"> Player/team 4: </label>
-    <input type="text" id="player4Input" name="player4Input"/>
+    <input class="inputtext" type="text" id="player4Input" name="player4Input"/>
     <label id="p4ScoreLabel" for="player4Score"> score: </label>
     <span id="player4Score">0</span>
     </div>
     <div id="p5Div" hidden>
     <label id="p5InputLabel" for="player5Input"> Player/team 5: </label>
-    <input type="text" id="player5Input" name="player5Input"/>
+    <input class="inputtext" type="text" id="player5Input" name="player5Input"/>
     <label id="p5ScoreLabel" for="player5Score"> score: </label>
     <span id="player5Score">0</span>
     </div>
     <div id="p6Div" hidden>
     <label id="p6InputLabel" for="player6Input"> Player/team 6: </label>
-    <input type="text" id="player6Input" name="player6Input"/>
+    <input class="inputtext" type="text" id="player6Input" name="player6Input"/>
     <label id="p6ScoreLabel" for="player6Score"> score: </label>
     <span id="player6Score">0</span>
     </div>
     <div id="p7Div" hidden>
     <label id="p7InputLabel" for="player7Input"> Player/team 7: </label>
-    <input type="text" id="player7Input" name="player7Input"/>
+    <input class="inputtext" type="text" id="player7Input" name="player7Input"/>
     <label id="p7ScoreLabel" for="player7Score"> score: </label>
     <span id="player7Score">0</span>
     </div>
     <div id="p8Div" hidden>
     <label id="p8InputLabel" for="player8Input"> Player/team 8: </label>
-    <input type="text" id="player8Input" name="player8Input"/>
+    <input class="inputtext" type="text" id="player8Input" name="player8Input"/>
     <label id="p8ScoreLabel" for="player8Score"> score: </label>
     <span id="player8Score">0</span>
     </div>
     <div id="p9Div" hidden>
     <label id="p9InputLabel" for="player9Input"> Player/team 9: </label>
-    <input type="text" id="player9Input" name="player9Input"/>
+    <input class="inputtext" type="text" id="player9Input" name="player9Input"/>
     <label id="p9ScoreLabel" for="player9Score"> score: </label>
     <span id="player9Score">0</span>
     </div>
     <div id="p10Div" hidden>
     <label id="p10InputLabel" for="player10Input"> Player/team 10: </label>
-    <input type="text" id="player10Input" name="player10Input"/>
+    <input class="inputtext" type="text" id="player10Input" name="player10Input"/>
     <label id="p10ScoreLabel" for="player10Score"> score: </label>
     <span id="player10Score">0</span>
     </div>
@@ -110,6 +117,7 @@
     <p id="dbgmsg" hidden></p>
     <p id="action"></p>
 
+    <div id="btnDiv">
       <div id="passDiv" hidden>
         <button type="button" onclick="pass()"><br><b>Pass The Pigs</b><br><br></button>
       </div>
@@ -185,7 +193,122 @@
       <div id="piggybackDiv" hidden>
         <button type="button" onclick="oinker()"><b>Piggy Back</b><br>Out of game</button>
       </div>
+    </div>
 
+    <table id="imgDiv">
+    <tr>
+     <td>
+      <div id="ipassDiv" hidden>
+      <input class="inputimg" type="image" src="img/pass.jpg" onclick="pass()" />
+      </div>
+     </td>
+     <td>
+      <div id="ipigoutDiv" hidden>
+      <input class="inputimg" type="image" src="img/pigout.jpg" onclick="startTurn()" />
+      </div>
+     </td>
+     <td>
+      <div id="isiderDiv" hidden>
+      <input class="inputimg" type="image" src="img/sider.jpg" onclick="addPoints(1)" />
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div id="irazorbackDiv" hidden>
+      <input class="inputimg" type="image" src="img/razorback.jpg" onclick="addPoints(5)" />
+      </div>
+     </td>
+     <td>
+      <div id="itrotterDiv" hidden>
+      <input class="inputimg" type="image" src="img/trotter.jpg" onclick="addPoints(5)" />
+      </div>
+     </td>
+     <td>
+      <div id="isnouterDiv" hidden>
+      <input class="inputimg" type="image" src="img/snouter.jpg" onclick="addPoints(10)" />
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div id="ijowlerDiv" hidden>
+      <input class="inputimg" type="image" src="img/jowler.jpg" onclick="addPoints(15)" />
+      </div>
+     </td>
+     <td>
+      <div id="itrotterrazorbackDiv" hidden>
+      <input class="inputimg" type="image" src="img/tr.jpg" onclick="addPoints(10)" />
+      </div>
+     </td>
+     <td>
+      <div id="isnoutertrotterDiv" hidden>
+      <input class="inputimg" type="image" src="img/st.jpg" onclick="addPoints(15)" />
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div id="isnouterrazorbackDiv" hidden>
+      <input class="inputimg" type="image" src="img/sr.jpg" onclick="addPoints(15)" />
+      </div>
+     </td>
+     <td>
+      <div id="itrotterjowlerDiv" hidden>
+      <input class="inputimg" type="image" src="img/tj.jpg" onclick="addPoints(20)" />
+      </div>
+     </td>
+     <td>
+      <div id="irazorbackjowlerDiv" hidden>
+      <input class="inputimg" type="image" src="img/rj.jpg" onclick="addPoints(20)" />
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div id="isnouterjowlerDiv" hidden>
+      <input class="inputimg" type="image" src="img/sj.jpg" onclick="addPoints(25)" />
+      </div>
+     </td>
+     <td>
+      <div id="idtrotterDiv" hidden>
+      <input class="inputimg" type="image" src="img/dt.jpg" onclick="addPoints(20)" />
+      </div>
+     </td>
+     <td>
+      <div id="idsnouterDiv" hidden>
+      <input class="inputimg" type="image" src="img/ds.jpg" onclick="addPoints(40)" />
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div id="idrazorbackDiv" hidden>
+      <input class="inputimg" type="image" src="img/dr.jpg" onclick="addPoints(20)" />
+      </div>
+     </td>
+     <td>
+      <div id="idjowlerDiv" hidden>
+      <input class="inputimg" type="image" src="img/dj.jpg" onclick="addPoints(60)" />
+      </div>
+     </td>
+     <td>
+      <div id="ioinkerDiv" hidden>
+      <input class="inputimg" type="image" src="img/oinker.jpg" onclick="oinker()" />
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <div id="ipiggybackDiv" hidden>
+      <input class="inputimg" type="image" src="img/piggyback.jpg" onclick="oinker()" />
+      </div>
+     </td>
+    </tr>
+    </table>
+
+    <label id="checkboxLabel" for="textOnlyInput"> Images on/off: </label>
+    <input type="checkbox" id="modeCheck" id="textOnlyInput" onclick="onTextOnly()" checked/>
   </body>
 
   <script>
@@ -219,6 +342,14 @@
       let result = 'The number of players is ' + number + '. Enter names and click Pass the Pigs.';
       document.getElementById("result").innerHTML = result;
       document.getElementById("passDiv").removeAttribute("hidden");
+      document.getElementById("ipassDiv").removeAttribute("hidden");
+      if (document.getElementById('modeCheck').checked) {
+        document.getElementById("imgDiv").removeAttribute("hidden");
+        document.getElementById("btnDiv").setAttribute("hidden","hidden");
+      } else {
+        document.getElementById("btnDiv").removeAttribute("hidden");
+        document.getElementById("imgDiv").setAttribute("hidden","hidden");
+      }
     }
     function startTurn() {
         if (typeof(Storage) !== "undefined") {
@@ -266,6 +397,25 @@
           document.getElementById("oinkerDiv").removeAttribute("hidden");
           document.getElementById("piggybackDiv").removeAttribute("hidden");
           document.getElementById("passDiv").setAttribute("hidden","hidden");
+          document.getElementById("ipigoutDiv").removeAttribute("hidden");
+          document.getElementById("isiderDiv").removeAttribute("hidden");
+          document.getElementById("irazorbackDiv").removeAttribute("hidden");
+          document.getElementById("itrotterDiv").removeAttribute("hidden");
+          document.getElementById("isnouterDiv").removeAttribute("hidden");
+          document.getElementById("ijowlerDiv").removeAttribute("hidden");
+          document.getElementById("itrotterrazorbackDiv").removeAttribute("hidden");
+          document.getElementById("isnoutertrotterDiv").removeAttribute("hidden");
+          document.getElementById("isnouterrazorbackDiv").removeAttribute("hidden");
+          document.getElementById("itrotterjowlerDiv").removeAttribute("hidden");
+          document.getElementById("irazorbackjowlerDiv").removeAttribute("hidden");
+          document.getElementById("isnouterjowlerDiv").removeAttribute("hidden");
+          document.getElementById("idtrotterDiv").removeAttribute("hidden");
+          document.getElementById("idsnouterDiv").removeAttribute("hidden");
+          document.getElementById("idrazorbackDiv").removeAttribute("hidden");
+          document.getElementById("idjowlerDiv").removeAttribute("hidden");
+          document.getElementById("ioinkerDiv").removeAttribute("hidden");
+          document.getElementById("ipiggybackDiv").removeAttribute("hidden");
+          document.getElementById("ipassDiv").setAttribute("hidden","hidden");
           document.getElementById("result").setAttribute("hidden","hidden");
         } else {
           document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
@@ -311,10 +461,19 @@
         let pName = document.getElementById(pNameId).value;
         document.querySelector('#action').innerHTML = pName + " has the pigs. Turn score is " + totScoreVal + ". Pass the pigs to increase score to " + scoreVal + ", OR toss the pigs again and select how they landed...";
         document.getElementById("passDiv").removeAttribute("hidden");
+        document.getElementById("ipassDiv").removeAttribute("hidden");
         window.scrollTo(0, 0);
     }
     function initialize() {
       if (typeof(Storage) !== "undefined") {
+        if (sessionStorage.imageOn) {
+          let imgOn = sessionStorage.imageOn;
+          if (imgOn != "0") {
+            document.getElementById("modeCheck").checked = true;
+          } else {
+            document.getElementById("modeCheck").checked = false;
+          }
+        }
         if (sessionStorage.playerCount && sessionStorage.currentPlayer) {
           playerCount();
           sessionStorage.currentPlayer = Number(sessionStorage.currentPlayer) - 1;
@@ -329,7 +488,11 @@
         } else {
           sessionStorage.removeItem('playerCount');
           sessionStorage.removeItem('currentPlayer');
-          document.querySelector('#dbgmsg').innerHTML = "not stored";
+          if (document.getElementById("modeCheck").checked) {
+            document.querySelector('#dbgmsg').innerHTML = "not stored 1";
+          } else {
+            document.querySelector('#dbgmsg').innerHTML = "not stored 0";
+          }
         }
       }
     }
@@ -363,9 +526,39 @@
       document.getElementById("oinkerDiv").setAttribute("hidden","hidden");
       document.getElementById("piggybackDiv").setAttribute("hidden","hidden");
       document.getElementById("passDiv").setAttribute("hidden","hidden");
+      document.getElementById("ipigoutDiv").setAttribute("hidden","hidden");
+      document.getElementById("isiderDiv").setAttribute("hidden","hidden");
+      document.getElementById("irazorbackDiv").setAttribute("hidden","hidden");
+      document.getElementById("itrotterDiv").setAttribute("hidden","hidden");
+      document.getElementById("isnouterDiv").setAttribute("hidden","hidden");
+      document.getElementById("ijowlerDiv").setAttribute("hidden","hidden");
+      document.getElementById("itrotterrazorbackDiv").setAttribute("hidden","hidden");
+      document.getElementById("isnoutertrotterDiv").setAttribute("hidden","hidden");
+      document.getElementById("isnouterrazorbackDiv").setAttribute("hidden","hidden");
+      document.getElementById("itrotterjowlerDiv").setAttribute("hidden","hidden");
+      document.getElementById("irazorbackjowlerDiv").setAttribute("hidden","hidden");
+      document.getElementById("isnouterjowlerDiv").setAttribute("hidden","hidden");
+      document.getElementById("idtrotterDiv").setAttribute("hidden","hidden");
+      document.getElementById("idsnouterDiv").setAttribute("hidden","hidden");
+      document.getElementById("idrazorbackDiv").setAttribute("hidden","hidden");
+      document.getElementById("idjowlerDiv").setAttribute("hidden","hidden");
+      document.getElementById("ioinkerDiv").setAttribute("hidden","hidden");
+      document.getElementById("ipiggybackDiv").setAttribute("hidden","hidden");
+      document.getElementById("ipassDiv").setAttribute("hidden","hidden");
       document.getElementById("action").innerHTML = "";
       document.getElementById("result").removeAttribute("hidden");
       playerCount();
+    }
+    function onTextOnly() {
+      if (document.getElementById("modeCheck").checked) {
+        document.querySelector('#dbgmsg').innerHTML = "onTextOnly 1";
+        sessionStorage.imageOn = "1";
+      } else {
+        document.querySelector('#dbgmsg').innerHTML = "onTextOnly 0";
+        sessionStorage.imageOn = "0";
+      }
+      document.querySelector('#dbgmsg').innerHTML = sessionStorage.imageOn;
+      initialize();
     }
     window.onload = initialize;
     </script>
