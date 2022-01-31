@@ -459,7 +459,7 @@
         let scoreVal = parseInt(score);
         scoreVal = scoreVal + totScoreVal;
         let pName = document.getElementById(pNameId).value;
-        document.querySelector('#action').innerHTML = pName + " has the pigs. Turn score is " + totScoreVal + ". Pass the pigs to increase score to " + scoreVal + ", OR toss the pigs again and select how they landed...";
+        document.querySelector('#action').innerHTML = pName + " has the pigs.<br>Turn score is " + totScoreVal + ".<br>Pass the pigs to increase score to " + scoreVal + ", OR toss the pigs again and select how they landed...";
         document.getElementById("passDiv").removeAttribute("hidden");
         document.getElementById("ipassDiv").removeAttribute("hidden");
         window.scrollTo(0, 0);
