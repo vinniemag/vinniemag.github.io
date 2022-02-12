@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+  </head>
+  <body>
+    <style>
+      select {
+        font-size: 200%;
+      }
+      input {
+        font-size: 200%;
+        width: 400px;
+      }
+      body {
+        font-size: 200%;
+      }
+      p {
+        font-size: 100%;
+      }
+      span {
+        font-size: 200%;
+      }
+      button {
+        font-size: 200%;
+        width: 500px;
+      }
+      .btnScore {
+        font-size: 200%;
+        width: 80px;
+      }
+      .inputtext {
+        font-size: 200%;
+        width: 400px;
+      }
+      .inputimg {
+        max-width: 100%;
+      }
+    </style>
+    <h2>UNO Scorekeeper Web App</h2>
+    <label for="playerCount"> Select number of players: </label>
+    <select id="playerCount" name="playerCount">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    <span>  </span>
+    <input 
+        id="submitBtn" 
+        type="submit" 
+        value="Submit" 
+        onclick="playerSet()"/>
+    <div id="p1Div" hidden>
+    <label id="p1InputLabel" for="player1Input"> Player 1: </label>
+    <input class="inputtext" type="text" id="player1Input" name="player1Input"/>
+    <button type="button" onclick="doScore(1)" id="player1Btn" hidden></button>
+    <label id="p1ScoreLabel" for="player1Score"> score: </label>
+    <span id="player1Score">0</span>
+    </div>
+    <div id="p2Div" hidden>
+    <label id="p2InputLabel" for="player2Input"> Player 2: </label>
+    <input class="inputtext" type="text" id="player2Input" name="player2Input"/>
+    <button type="button" onclick="doScore(2)" id="player2Btn" hidden></button>
+    <label id="p2ScoreLabel" for="player2Score"> score: </label>
+    <span id="player2Score">0</span>
+    </div>
+    <div id="p3Div" hidden>
+    <label id="p3InputLabel" for="player3Input"> Player 3: </label>
+    <input class="inputtext" type="text" id="player3Input" name="player3Input"/>
+    <button type="button" onclick="doScore(3)" id="player3Btn" hidden></button>
+    <label id="p3ScoreLabel" for="player3Score"> score: </label>
+    <span id="player3Score">0</span>
+    </div>
+    <div id="p4Div" hidden>
+    <label id="p4InputLabel" for="player4Input"> Player 4: </label>
+    <input class="inputtext" type="text" id="player4Input" name="player4Input"/>
+    <button type="button" onclick="doScore(4)" id="player4Btn" hidden></button>
+    <label id="p4ScoreLabel" for="player4Score"> score: </label>
+    <span id="player4Score">0</span>
+    </div>
+    <div id="p5Div" hidden>
+    <label id="p5InputLabel" for="player5Input"> Player 5: </label>
+    <input class="inputtext" type="text" id="player5Input" name="player5Input"/>
+    <button type="button" onclick="doScore(5)" id="player5Btn" hidden></button>
+    <label id="p5ScoreLabel" for="player5Score"> score: </label>
+    <span id="player5Score">0</span>
+    </div>
+    <div id="p6Div" hidden>
+    <label id="p6InputLabel" for="player6Input"> Player 6: </label>
+    <input class="inputtext" type="text" id="player6Input" name="player6Input"/>
+    <button type="button" onclick="doScore(6)" id="player6Btn" hidden></button>
+    <label id="p6ScoreLabel" for="player6Score"> score: </label>
+    <span id="player6Score">0</span>
+    </div>
+    <div id="p7Div" hidden>
+    <label id="p7InputLabel" for="player7Input"> Player 7: </label>
+    <input class="inputtext" type="text" id="player7Input" name="player7Input"/>
+    <button type="button" onclick="doScore(7)" id="player7Btn" hidden></button>
+    <label id="p7ScoreLabel" for="player7Score"> score: </label>
+    <span id="player7Score">0</span>
+    </div>
+    <div id="p8Div" hidden>
+    <label id="p8InputLabel" for="player8Input"> Player 8: </label>
+    <input class="inputtext" type="text" id="player8Input" name="player8Input"/>
+    <button type="button" onclick="doScore(8)" id="player8Btn" hidden></button>
+    <label id="p8ScoreLabel" for="player8Score"> score: </label>
+    <span id="player8Score">0</span>
+    </div>
+    <div id="p9Div" hidden>
+    <label id="p9InputLabel" for="player9Input"> Player 9: </label>
+    <input class="inputtext" type="text" id="player9Input" name="player9Input"/>
+    <button type="button" onclick="doScore(9)" id="player9Btn" hidden></button>
+    <label id="p9ScoreLabel" for="player9Score"> score: </label>
+    <span id="player9Score">0</span>
+    </div>
+    <div id="p10Div" hidden>
+    <label id="p10InputLabel" for="player10Input"> Player 10: </label>
+    <input class="inputtext" type="text" id="player10Input" name="player10Input"/>
+    <button type="button" onclick="doScore(10)" id="player10Btn" hidden></button>
+    <label id="p10ScoreLabel" for="player10Score"> score: </label>
+    <span id="player10Score">0</span>
+    </div>
+
+    <p id="result"></p>
+    <p id="dbgmsg" hidden></p>
+    <p id="action" hidden></p>
+    
+    <div id="startDiv" hidden>
+      <button type="button" onclick="onStart()">Start</button>
+    </div>
+    <div id="doneDiv" hidden>
+      <button type="button" onclick="onDone()" id="doneBtn">Done</button>
+    </div>
+
+    <table id="cardsDiv" style="width: 100%;" hidden>
+      <tr>
+       <td><button type="button" onclick="minus('Wild')" class="btnScore">-</button></td>
+       <td><p>Wild/Wild Draw Four</p></td>
+       <td><p id="Wild">0</p></td>
+       <td><button type="button" onclick="plus('Wild')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('DSR')" class="btnScore">-</button></td>
+       <td><p>Draw Two/Skip/Reverse</p></td>
+       <td><p id="DSR">0</p></td>
+       <td><button type="button" onclick="plus('DSR')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('nine')" class="btnScore">-</button></td>
+       <td><p>Nine (9)</p></td>
+       <td><p id="nine">0</p></td>
+       <td><button type="button" onclick="plus('nine')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('eight')" class="btnScore">-</button></td>
+       <td><p>Eight (8)</p></td>
+       <td><p id="eight">0</p></td>
+       <td><button type="button" onclick="plus('eight')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('seven')" class="btnScore">-</button></td>
+       <td><p>Seven (7)</p></td>
+       <td><p id="seven">0</p></td>
+       <td><button type="button" onclick="plus('seven')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('six')" class="btnScore">-</button></td>
+       <td><p>Six (6)</p></td>
+       <td><p id="six">0</p></td>
+       <td><button type="button" onclick="plus('six')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('five')" class="btnScore">-</button></td>
+       <td><p>Five (5)</p></td>
+       <td><p id="five">0</p></td>
+       <td><button type="button" onclick="plus('five')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('four')" class="btnScore">-</button></td>
+       <td><p>Four (4)</p></td>
+       <td><p id="four">0</p></td>
+       <td><button type="button" onclick="plus('four')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('tre')" class="btnScore">-</button></td>
+       <td><p>Three (3)</p></td>
+       <td><p id="tre">0</p></td>
+       <td><button type="button" onclick="plus('tre')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('due')" class="btnScore">-</button></td>
+       <td><p>Two (2)</p></td>
+       <td><p id="due">0</p></td>
+       <td><button type="button" onclick="plus('due')" class="btnScore">+</button></td>
+      </tr>
+      <tr>
+       <td><button type="button" onclick="minus('uno')" class="btnScore">-</button></td>
+       <td><p>One (1)</p></td>
+       <td><p id="uno">0</p></td>
+       <td><button type="button" onclick="plus('uno')" class="btnScore">+</button></td>
+      </tr>
+    </table>
+  </body>
+
+  <script>
+    function playerCount() {
+      if (typeof(Storage) !== "undefined") {
+        if (sessionStorage.playerCount) {
+          document.querySelector('#playerCount').value = sessionStorage.playerCount;
+          for (let i = 1; i <= 10; i++) {
+            let nameI = "player" + i + "Input";
+            let nameS = "player" + i + "Name";
+            let nameP = "player" + i + "Score";
+            document.getElementById(nameI).value = sessionStorage.getItem(nameS);
+            document.getElementById(nameP).innerText = sessionStorage.getItem(nameP);
+          }
+        } else {
+          sessionStorage.playerCount = document.querySelector('#playerCount').value;
+        }
+      }
+      let number = document.querySelector('#playerCount').value;
+      if (number > 9) {document.getElementById("p10Div").removeAttribute("hidden"); } else { document.getElementById("p10Div").setAttribute("hidden","hidden"); }
+      if (number > 8) {document.getElementById("p9Div").removeAttribute("hidden"); } else { document.getElementById("p9Div").setAttribute("hidden","hidden"); }
+      if (number > 7) {document.getElementById("p8Div").removeAttribute("hidden"); } else { document.getElementById("p8Div").setAttribute("hidden","hidden"); }
+      if (number > 6) {document.getElementById("p7Div").removeAttribute("hidden"); } else { document.getElementById("p7Div").setAttribute("hidden","hidden"); }
+      if (number > 5) {document.getElementById("p6Div").removeAttribute("hidden"); } else { document.getElementById("p6Div").setAttribute("hidden","hidden"); }
+      if (number > 4) {document.getElementById("p5Div").removeAttribute("hidden"); } else { document.getElementById("p5Div").setAttribute("hidden","hidden"); }
+      if (number > 3) {document.getElementById("p4Div").removeAttribute("hidden"); } else { document.getElementById("p4Div").setAttribute("hidden","hidden"); }
+      if (number > 2) {document.getElementById("p3Div").removeAttribute("hidden"); } else { document.getElementById("p3Div").setAttribute("hidden","hidden"); }
+      document.getElementById("p2Div").removeAttribute("hidden");
+      document.getElementById("p1Div").removeAttribute("hidden");
+
+      for (let i = 1; i <= 10; i++) {
+        let nameI = "player" + i + "Input";
+        let nameS = "player" + i + "Name";
+        let nameP = "player" + i + "Score";
+        let nameB = "player" + i + "Btn";
+        let nameL = "p" + i + "InputLabel";
+
+        document.getElementById(nameB).innerHTML = document.getElementById(nameI).value;
+        document.getElementById(nameB).setAttribute("hidden","hidden");
+        document.getElementById(nameI).removeAttribute("hidden");
+        document.getElementById(nameL).removeAttribute("hidden");
+      }
+
+      let result = 'The number of players is ' + number + '. Enter names and click Start.';
+      document.getElementById("startDiv").removeAttribute("hidden");
+
+      document.getElementById("result").innerHTML = result;
+    }
+    function onStart() {
+      document.getElementById("startDiv").setAttribute("hidden","hidden");
+      for (let i = 1; i <= 10; i++) {
+        let nameI = "player" + i + "Input";
+        let nameS = "player" + i + "Name";
+        let nameP = "player" + i + "Score";
+        let nameB = "player" + i + "Btn";
+        let nameL = "p" + i + "InputLabel";
+        sessionStorage.setItem(nameS, document.getElementById(nameI).value);
+        sessionStorage.setItem(nameP, document.getElementById(nameP).innerText);
+
+        document.getElementById(nameB).innerHTML = document.getElementById(nameI).value;
+        document.getElementById(nameB).removeAttribute("hidden");
+        document.getElementById(nameI).setAttribute("hidden","hidden");
+        document.getElementById(nameL).setAttribute("hidden","hidden");
+      }
+
+      document.getElementById("result").innerHTML = 'Tap the player name to score.';
+      sessionStorage.started = 1;
+    }
+    function doScore(playerNum) {
+      if (document.getElementById("action").innerHTML == "") {
+        document.getElementById("cardsDiv").removeAttribute("hidden");
+        document.getElementById("doneDiv").removeAttribute("hidden");
+        document.getElementById("result").innerHTML = 'Select card counts and tap Done';
+        let action = "player" + playerNum + "Score";
+        document.getElementById("action").innerHTML = action;
+
+        let btnId = "player" + playerNum + "Btn";
+        document.getElementById(btnId).style.backgroundColor = "green";
+        document.getElementById(btnId).style.color = "white";
+      }
+    }
+    function onDone() {
+      document.getElementById("result").innerHTML = 'Tap the player name to score.';
+      document.getElementById("cardsDiv").setAttribute("hidden","hidden");
+      document.getElementById("doneDiv").setAttribute("hidden","hidden");
+
+      for (let i = 1; i <= 10; i++) {
+      }
+
+      let total = 0;
+      const ids = ["Wild","DSR","nine","eight","seven","six","five","four","tre","due","uno"];
+      const val = [50,20,9,8,7,6,5,4,3,2,1];
+      for (let i = 0; i < ids.length; i++) {
+         total += Number(document.getElementById(ids[i]).innerHTML) * val[i];
+         document.getElementById(ids[i]).innerHTML = 0;
+      }
+      total += Number(document.getElementById(document.getElementById('action').innerHTML).innerHTML);
+      document.getElementById(document.getElementById('action').innerHTML).innerHTML = total;
+
+      document.getElementById("action").innerHTML = "";
+      for (let i = 1; i <= 10; i++) {
+        let nameI = "player" + i + "Input";
+        let nameP = "player" + i + "Score";
+        let btnId = "player" + i + "Btn";
+        document.getElementById(btnId).style.backgroundColor = document.getElementById("doneBtn").style.backgroundColor;
+        document.getElementById(btnId).style.color = document.getElementById("doneBtn").style.color;
+        sessionStorage.setItem(nameP, document.getElementById(nameP).innerText);
+      }
+    }
+    function plus(id) {
+      let i = Number(document.getElementById(id).innerHTML) + 1;
+      document.getElementById(id).innerHTML = i;
+    }
+    function minus(id) {
+      let i = Number(document.getElementById(id).innerHTML) - 1;
+      document.getElementById(id).innerHTML = i < 0 ? 0 : i;
+    }
+    function initialize() {
+      if (typeof(Storage) !== "undefined") {
+        if (sessionStorage.playerCount) {
+          playerCount();
+          if (sessionStorage.started) {
+            onStart();
+          }
+        } else {
+          sessionStorage.removeItem('playerCount');
+        }
+      }
+    }
+    function playerSet() {
+      sessionStorage.removeItem('playerCount');
+      sessionStorage.removeItem('started');
+      for (let i = 1; i <= 10; i++) {
+        let nameI = "player" + i + "Input";
+        let nameS = "player" + i + "Name";
+        let nameP = "player" + i + "Score";
+        sessionStorage.setItem(nameS, document.getElementById(nameI).value);
+        document.getElementById(nameP).innerText = "0";
+        sessionStorage.setItem(nameP, document.getElementById(nameP).innerText);
+      }
+      playerCount();
+    }
+    window.onload = initialize;
+    </script>
+  </body>
+</html>
