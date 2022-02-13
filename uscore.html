@@ -36,6 +36,13 @@
       .inputimg {
         max-width: 100%;
       }
+      .pointsVal {
+        font-size: 200%;
+        text-align: center;
+      }
+      .points {
+        font-size: 200%;
+      }
     </style>
     <h2>UNO Scorekeeper Web App</h2>
     <label for="playerCount"> Select number of players: </label>
@@ -138,72 +145,72 @@
       <button type="button" onclick="onDone()" id="doneBtn">Done</button>
     </div>
 
-    <table id="cardsDiv" style="width: 100%;" hidden>
+    <table id="cardsDiv" hidden>
       <tr>
        <td><button type="button" onclick="minus('Wild')" class="btnScore">-</button></td>
-       <td><p>Wild/Wild Draw Four</p></td>
-       <td><p id="Wild">0</p></td>
+       <td class="pointsVal" id="Wild">0</td>
        <td><button type="button" onclick="plus('Wild')" class="btnScore">+</button></td>
+       <td class="points">Wild/Wild Draw Four</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('DSR')" class="btnScore">-</button></td>
-       <td><p>Draw Two/Skip/Reverse</p></td>
-       <td><p id="DSR">0</p></td>
+       <td class="pointsVal" id="DSR">0</td>
        <td><button type="button" onclick="plus('DSR')" class="btnScore">+</button></td>
+       <td class="points">Draw Two/Skip/Reverse</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('nine')" class="btnScore">-</button></td>
-       <td><p>Nine (9)</p></td>
-       <td><p id="nine">0</p></td>
+       <td class="pointsVal" id="nine">0</td>
        <td><button type="button" onclick="plus('nine')" class="btnScore">+</button></td>
+       <td class="points">Nine (9)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('eight')" class="btnScore">-</button></td>
-       <td><p>Eight (8)</p></td>
-       <td><p id="eight">0</p></td>
+       <td class="pointsVal" id="eight">0</td>
        <td><button type="button" onclick="plus('eight')" class="btnScore">+</button></td>
+       <td class="points">Eight (8)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('seven')" class="btnScore">-</button></td>
-       <td><p>Seven (7)</p></td>
-       <td><p id="seven">0</p></td>
+       <td class="pointsVal" id="seven">0</td>
        <td><button type="button" onclick="plus('seven')" class="btnScore">+</button></td>
+       <td class="points">Seven (7)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('six')" class="btnScore">-</button></td>
-       <td><p>Six (6)</p></td>
-       <td><p id="six">0</p></td>
+       <td class="pointsVal" id="six">0</td>
        <td><button type="button" onclick="plus('six')" class="btnScore">+</button></td>
+       <td class="points">Six (6)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('five')" class="btnScore">-</button></td>
-       <td><p>Five (5)</p></td>
-       <td><p id="five">0</p></td>
+       <td class="pointsVal" id="five">0</td>
        <td><button type="button" onclick="plus('five')" class="btnScore">+</button></td>
+       <td class="points">Five (5)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('four')" class="btnScore">-</button></td>
-       <td><p>Four (4)</p></td>
-       <td><p id="four">0</p></td>
+       <td class="pointsVal" id="four">0</td>
        <td><button type="button" onclick="plus('four')" class="btnScore">+</button></td>
+       <td class="points">Four (4)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('tre')" class="btnScore">-</button></td>
-       <td><p>Three (3)</p></td>
-       <td><p id="tre">0</p></td>
+       <td class="pointsVal" id="tre">0</td>
        <td><button type="button" onclick="plus('tre')" class="btnScore">+</button></td>
+       <td class="points">Three (3)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('due')" class="btnScore">-</button></td>
-       <td><p>Two (2)</p></td>
-       <td><p id="due">0</p></td>
+       <td class="pointsVal" id="due">0</td>
        <td><button type="button" onclick="plus('due')" class="btnScore">+</button></td>
+       <td class="points">Two (2)</td>
       </tr>
       <tr>
        <td><button type="button" onclick="minus('uno')" class="btnScore">-</button></td>
-       <td><p>One (1)</p></td>
-       <td><p id="uno">0</p></td>
+       <td class="pointsVal" id="uno">0</td>
        <td><button type="button" onclick="plus('uno')" class="btnScore">+</button></td>
+       <td class="points">One (1)</td>
       </tr>
     </table>
   </body>

@@ -7,12 +7,12 @@
    background-color: white;
    color: black;
    border: 2px solid green;
-   padding: 10px 20px;
+   padding: 10px 10px 10px 10px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
    width: 90%;
-   font-size: 200%;
+   font-size: 300%;
   }
   a:hover {
    background-color: green;
@@ -21,27 +21,8 @@
   </style>
   </head>
   <body>
-   <p id="result"></p>
    <p><a href="ptpscore.html">"Pass The Pigs"<br>Scorekeeper App</a></p>
    <p><a href="uscore.html">"Uno"<br>Scorekeeper App</a></p>
-   <p id="ahome" hidden><a href="https://www.movewithmaglio.com" id="ahome1">BUY or SELL a home</a></p>
-   <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
-   <script>
-    function initialize() {
-      document.getElementById("result").innerHTML = geoplugin_city() + ", " + geoplugin_region();
-      if (geoplugin_countryName() == "United States" && geoplugin_regionCode() == "IN")
-      {
-        let city = geoplugin_city();
-        let state = geoplugin_region();
-        if (city == "Fishers" || city == "Noblesville" || city == "Westfield" || city == "Indianapolis")
-        {
-           let s = " " + city + ", " + state;
-           document.getElementById("ahome1").innerHTML += "<br>\nin" + s.toUpperCase();
-           document.getElementById("ahome").removeAttribute("hidden");
-        }
-      }
-    }    
-    window.onload = initialize;
-    </script>
+   <p><a href="https://www.movewithmaglio.com" id="ahome1">BUY or SELL a HOME<br>in CENTRAL INDIANA</a></p>
   </body>
 </html>
