@@ -213,22 +213,25 @@
        <td class="points">One (1)</td>
       </tr>
     </table>
+    <p style="font-size: 100%;">© Copyright 2022, VAM</p>
   </body>
 
   <script>
     function playerCount() {
       if (typeof(Storage) !== "undefined") {
-        if (sessionStorage.playerCount) {
-          document.querySelector('#playerCount').value = sessionStorage.playerCount;
+        if (sessionStorage.playerCountUNO) {
+          document.querySelector('#playerCount').value = sessionStorage.playerCountUNO;
           for (let i = 1; i <= 10; i++) {
             let nameI = "player" + i + "Input";
             let nameS = "player" + i + "Name";
             let nameP = "player" + i + "Score";
-            document.getElementById(nameI).value = sessionStorage.getItem(nameS);
-            document.getElementById(nameP).innerText = sessionStorage.getItem(nameP);
+            let nameSs = "player" + i + "NameUNO";
+            let namePs = "player" + i + "ScoreUNO";
+            document.getElementById(nameI).value = sessionStorage.getItem(nameSs);
+            document.getElementById(nameP).innerText = sessionStorage.getItem(namePs);
           }
         } else {
-          sessionStorage.playerCount = document.querySelector('#playerCount').value;
+          sessionStorage.playerCountUNO = document.querySelector('#playerCount').value;
         }
       }
       let number = document.querySelector('#playerCount').value;
@@ -266,11 +269,13 @@
       for (let i = 1; i <= 10; i++) {
         let nameI = "player" + i + "Input";
         let nameS = "player" + i + "Name";
+        let nameSs = "player" + i + "NameUNO";
         let nameP = "player" + i + "Score";
+        let namePs = "player" + i + "ScoreUNO";
         let nameB = "player" + i + "Btn";
         let nameL = "p" + i + "InputLabel";
-        sessionStorage.setItem(nameS, document.getElementById(nameI).value);
-        sessionStorage.setItem(nameP, document.getElementById(nameP).innerText);
+        sessionStorage.setItem(nameSs, document.getElementById(nameI).value);
+        sessionStorage.setItem(namePs, document.getElementById(nameP).innerText);
 
         document.getElementById(nameB).innerHTML = document.getElementById(nameI).value;
         document.getElementById(nameB).removeAttribute("hidden");
@@ -279,7 +284,7 @@
       }
 
       document.getElementById("result").innerHTML = 'Tap the player name to score.';
-      sessionStorage.started = 1;
+      sessionStorage.startedUNO = 1;
     }
     function doScore(playerNum) {
       if (document.getElementById("action").innerHTML == "") {
@@ -316,10 +321,11 @@
       for (let i = 1; i <= 10; i++) {
         let nameI = "player" + i + "Input";
         let nameP = "player" + i + "Score";
+        let namePs = "player" + i + "ScoreUNO";
         let btnId = "player" + i + "Btn";
         document.getElementById(btnId).style.backgroundColor = document.getElementById("doneBtn").style.backgroundColor;
         document.getElementById(btnId).style.color = document.getElementById("doneBtn").style.color;
-        sessionStorage.setItem(nameP, document.getElementById(nameP).innerText);
+        sessionStorage.setItem(namePs, document.getElementById(nameP).innerText);
       }
     }
     function plus(id) {
@@ -332,26 +338,28 @@
     }
     function initialize() {
       if (typeof(Storage) !== "undefined") {
-        if (sessionStorage.playerCount) {
+        if (sessionStorage.playerCountUNO) {
           playerCount();
-          if (sessionStorage.started) {
+          if (sessionStorage.startedUNO) {
             onStart();
           }
         } else {
-          sessionStorage.removeItem('playerCount');
+          sessionStorage.removeItem('playerCountUNO');
         }
       }
     }
     function playerSet() {
-      sessionStorage.removeItem('playerCount');
-      sessionStorage.removeItem('started');
+      sessionStorage.removeItem('playerCountUNO');
+      sessionStorage.removeItem('startedUNO');
       for (let i = 1; i <= 10; i++) {
         let nameI = "player" + i + "Input";
         let nameS = "player" + i + "Name";
         let nameP = "player" + i + "Score";
-        sessionStorage.setItem(nameS, document.getElementById(nameI).value);
+        let nameSs = "player" + i + "NameUNO";
+        let namePs = "player" + i + "ScoreUNO";
+        sessionStorage.setItem(nameSs, document.getElementById(nameI).value);
         document.getElementById(nameP).innerText = "0";
-        sessionStorage.setItem(nameP, document.getElementById(nameP).innerText);
+        sessionStorage.setItem(namePs, document.getElementById(nameP).innerText);
       }
       playerCount();
     }

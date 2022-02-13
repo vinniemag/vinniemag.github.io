@@ -309,6 +309,7 @@
 
     <label id="checkboxLabel" for="textOnlyInput"> Images on/off: </label>
     <input type="checkbox" id="modeCheck" id="textOnlyInput" onclick="onTextOnly()" checked/>
+    <p style="font-size: 100%;">© Copyright 2022, VAM</p>
   </body>
 
   <script>
@@ -349,6 +350,11 @@
       } else {
         document.getElementById("btnDiv").removeAttribute("hidden");
         document.getElementById("imgDiv").setAttribute("hidden","hidden");
+      }
+      for (let i = 1; i <= 10; i++) {
+        let nameI = "player" + i + "Input";
+        document.getElementById(nameI).style.backgroundColor = "white";
+        document.getElementById(nameI).style.color = "black";
       }
     }
     function startTurn() {
