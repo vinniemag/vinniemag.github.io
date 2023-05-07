@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guitar Neck Notes</title>
+  <style>
+    select {
+      font-size: 150%;
+    }
+
+    label {
+      font-size: 150%;
+    }
+
+    .note {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin: 0px;
+      font-size: 16px;
+      border: 2px solid white;
+    }
+
+    .note.selected {
+      border: 2px solid Silver;
+    }
+
+    .note.pentatonic {
+      border: 2px solid DimGray;
+    }
+    
+    .note.rootpos {
+      background-color: yellow;
+    }
+
+    .string {
+      display: flex;
+      margin-bottom: 0px;
+    }
+
+    .fret0 {
+      border-left: 3px solid black;
+      height: 44px;
+    }
+
+    .fretx {
+      border-left: 1px solid black;
+      height: 44px;
+    }
+
+    .fret0spacer {
+      border-left: 3px solid white;
+      height: 44px;
+    }
+
+    .fretxspacer {
+      border-left: 1px solid white;
+      height: 44px;
+    }
+
+    .posdotsingle {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 30%;
+      width: 30%;
+      border-radius: 50%;
+      background-color: Gainsboro;
+    }
+
+    .posdotmargin {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 35%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guitar Neck Notes</h1>
+  <label for="scale-select">Select Major Scale:</label>
+  <select id="scale-select">
+    <option value="E">E</option>
+    <option value="F">F</option>
+    <option value="F#">F#</option>
+    <option value="G">G</option>
+    <option value="G#">G#</option>
+    <option value="A">A</option>
+    <option value="A#">A#</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="D#">D#</option>
+  </select>
+  <label for="pent-select">Show Pentatonic:</label>
+  <select id="pent-select">
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">Only</option>
+  </select>
+  <label for="position-select">Position:</label>
+  <select id="position-select">
+    <option value="N">None</option>
+  </select>
+
+  <div id="neck">
+    <!-- The guitar neck notes will be dynamically added here -->
+  </div>
+  <div id="fretPos">
+    <!-- The guitar neck position indications be dynamically added here -->
+  </div>
+  <p style="font-size: 100%;">© Copyright 2023, VAM</p>
+
+  <script>
+    const neck = document.getElementById('neck');
+    const scaleSelect = document.getElementById('scale-select');
+    const pentSelect = document.getElementById('pent-select');
+    const posSelect = document.getElementById('position-select');
+    const fretPos = document.getElementById('fretPos');
+    const N_FRETS = 22;
+    
+    // Array of notes on the guitar neck
+    const notes = ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
+    const openNotes = ['E','B','G','D','A','E'];
+    
+    // Function to create a note element
+    function createNoteElement(note) {
+      const noteElement = document.createElement('div');
+      noteElement.className = 'note';
+      noteElement.textContent = note;
+      return noteElement;
+    }
+
+    // Function to create a fret element
+    function createFretElement(fret) {
+      const fretElement = document.createElement('div');
+      if (fret < 1) {
+        fretElement.className = 'fret0';
+      }
+      else {
+        fretElement.className = 'fretx';
+      }
+      return fretElement;
+    }
+
+    // Function to create a fret position indication element
+    function createFretPositionElement(fret) {
+      const posElement = document.createElement('div');
+      posElement.className = 'note';
+
+      if ((fret == 3) || (fret == 5) || (fret == 7) || (fret == 9) ||
+          (fret == 15) || (fret == 17) || (fret == 19) || (fret == 21)) {
+        const xElementTop = document.createElement('div');
+        xElementTop.className = 'posdotmargin';
+        posElement.appendChild(xElementTop);
+
+        const xElementDot = document.createElement('div');
+        xElementDot.className = 'posdotsingle';
+        posElement.appendChild(xElementDot);
+
+        const xElementBottom = document.createElement('div');
+        xElementBottom.className = 'posdotmargin';
+        posElement.appendChild(xElementBottom);
+      }
+
+      if (fret == 12) {
+        const xElementTop = document.createElement('div');
+        xElementTop.className = 'posdotsingle';
+        posElement.appendChild(xElementTop);
+
+        const xElementDot = document.createElement('div');
+        xElementDot.className = 'posdotmargin';
+        posElement.appendChild(xElementDot);
+
+        const xElementBottom = document.createElement('div');
+        xElementBottom.className = 'posdotsingle';
+        posElement.appendChild(xElementBottom);
+      }
+
+      return posElement;
+    }
+    
+    // Function to display notes on the guitar neck
+    function displayNotes(scale) {
+      neck.innerHTML = '';
+      fretPos.innerHTML = '';
+      let rootFret = [ -1, -1 ];
+      for (let string = 6; string >= 1; string--) {
+        const stringElement = document.createElement('div');
+        stringElement.className = 'string';
+        neck.appendChild(stringElement);
+        const openNoteIndex = notes.indexOf(openNotes[6 - string]);
+        for (let fret = 0; fret < N_FRETS; fret++) {
+          const noteIndex = (fret + openNoteIndex) % notes.length;
+          const note = notes[noteIndex];
+          
+          const noteElement = createNoteElement(note);
+          if (scale.includes(note)) {
+            let i = scale.indexOf(note);
+            if ((pentSelect.value == 0) || (pentSelect.value == 1)) {
+              noteElement.classList.add('selected');
+            }
+            if ((i != 3) && (i != 6)) {
+              if (pentSelect.value >= 1) {
+                noteElement.classList.add('pentatonic');
+                if (pentSelect.value == 2) {
+                  noteElement.classList.add('selected');
+                }
+              }
+              if ((string == 6) && (note == posSelect.value)) {
+                if (rootFret[0] < 0) {
+                  rootFret[0] = fret;
+                } else if (rootFret[1] < 0) {
+                  rootFret[1] = fret;
+                }
+	      }
+            }
+            if (((rootFret[0] >= 0) && (fret >= (rootFret[0]-1)) && (fret <= (rootFret[0]+3))) ||
+                 ((rootFret[1] >= 0) && (fret >= (rootFret[1]-1)) && (fret <= (rootFret[1]+3)))) {
+              if ((pentSelect.value < 2) || (noteElement.classList.contains('selected'))) {
+                noteElement.classList.add('rootpos');
+              }
+            }
+          }
+          stringElement.appendChild(noteElement);
+
+	  const fretElement = createFretElement(fret);
+          stringElement.appendChild(fretElement);
+        }
+      }
+
+      // Add a row which shows fret position indicators (dots on fretboard)
+      const spacingRow = document.createElement('div');
+      spacingRow.className = 'string';
+      fretPos.appendChild(spacingRow);
+
+      const fretPosElement = createFretPositionElement(0);
+      spacingRow.appendChild(fretPosElement);
+
+      const fretElement = document.createElement('div');
+      fretElement.className = 'fret0spacer';
+      spacingRow.appendChild(fretElement);
+
+      for (let fret = 1; fret < N_FRETS; fret++) {
+
+        const fretPosElementI = createFretPositionElement(fret);
+        spacingRow.appendChild(fretPosElementI);
+
+        const fretElementI = document.createElement('div');
+        fretElementI.className = 'fretxspacer';
+        spacingRow.appendChild(fretElementI);
+      }
+    }
+
+    // Update position select
+    function updatePositionSelect(scale) {
+      for (let i = posSelect.length; i > 1; i--) {
+        posSelect.remove(i-1);
+      }
+      for (let i = 0; i < scale.length-1; i++) {
+        if ((i != 3) && (i != 6)) {
+          var option = document.createElement("option");
+          option.text = scale[i];
+          option.value = scale[i];
+          posSelect.add(option);
+        }
+      }
+      posSelect.selectedIndex = 0;
+    }
+
+    // Event listener for scale selection change
+    scaleSelect.addEventListener('change', (event) => {
+      const selectedScale = event.target.value;
+      updatePositionSelect(getMajorScale(selectedScale));
+      displayNotes(getMajorScale(selectedScale));
+    });
+
+    // Event listener for pentatonic selection change
+    pentSelect.addEventListener('change', (event) => {
+      const selectedScale = scaleSelect.value;
+      displayNotes(getMajorScale(selectedScale));
+    });
+    
+    // Event listener for position selection change
+    posSelect.addEventListener('change', (event) => {
+      const selectedScale = scaleSelect.value;
+      displayNotes(getMajorScale(selectedScale));
+    });
+
+    // Function to get the major scale based on the root note
+    function getMajorScale(rootNote) {
+      const majorScale = ['W', 'W', 'H', 'W', 'W', 'W', 'H']; // W = whole step, H = half step
+      const rootIndex = notes.indexOf(rootNote);
+      let scale = [notes[rootIndex]];
+      let offset = 0;
+      for (let i = 0; i < majorScale.length; i++) {
+        const interval = majorScale[i];
+        const intervalIndex = (rootIndex + offset) % notes.length;
+    
+        if (interval === 'W') {
+          offset += 2;
+        } else if (interval === 'H') {
+          offset += 1;
+        }
+        scale.push(notes[(rootIndex + offset) % notes.length]);
+      }
+    
+      return scale;
+    }
+    
+    // Display initial notes on page load
+    displayNotes(getMajorScale(scaleSelect.value));
+    updatePositionSelect(getMajorScale(scaleSelect.value));
+  </script>
+</body>
+</html>
